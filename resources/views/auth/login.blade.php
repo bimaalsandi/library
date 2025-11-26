@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
 
+
+    <style>
+        /*************  ✨ Windsurf Command 🌟  *************/
+        body {
+            background-size: cover;
+            background-attachment: fixed;
+            background-image: url('{{ asset('assets/img/login.jpg') }}');
+        }
+
+        .card {
+            opacity: 0.8;
+        }
+
+        /*******  20f12c60-6315-40d7-b717-89cf718f4b0f  *******/
+    </style>
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>

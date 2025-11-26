@@ -16,7 +16,7 @@ class Buku extends Model
         $query = DB::table('buku')
             ->select('*')
             ->where('judul', 'like', '%' . $search . '%');
-        return $query->paginate(5);
+        return $query->paginate(6);
     }
 
     public function listBukuYangDipinjam($id_user)

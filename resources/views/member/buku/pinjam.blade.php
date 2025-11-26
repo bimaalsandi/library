@@ -6,10 +6,14 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body p-4">
 
-                        <h4 class="text-center mb-4 fw-bold">Form Pinjam Buku</h4>
+                        <h4 class="text-start mb-0 fw-bold">Form Pinjam Buku</h4>
+                        <p class="text-muted mb-3">
+                            <i> {{ $buku->judul }} ({{ $buku->kode }})</i>
+                        </p>
 
                         <form action="{{ url('/buku/process-pinjam') }}" method="POST">
                             @csrf
+
                             <div class="mb-3">
                                 <label class="form-label">NIS</label>
                                 <input type="hidden" name="id_buku" value="{{ $buku->id }}">
