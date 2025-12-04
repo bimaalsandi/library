@@ -65,7 +65,7 @@ class PengunjungController extends Controller
 
         if ($request->input('status') == 'Done') {
             $buku = Buku::find($pengunjung->id_buku);
-            $buku->stock = $buku->stock - 1;
+            $buku->stock = $buku->stock + 1;
             $buku->save();
         }
 
