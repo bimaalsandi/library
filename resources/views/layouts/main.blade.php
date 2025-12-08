@@ -15,6 +15,10 @@
     <!-- DataTables v2 JS -->
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+
 
 </head>
 
@@ -23,7 +27,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">My App</a>
+            <a class="navbar-brand" href="#">Perpustakaan</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -24,7 +24,7 @@ Route::get('/pengunjung', [PengunjungController::class, 'index'])->middleware('r
 Route::get('/pengunjung/edit/{id}', [PengunjungController::class, 'edit'])->middleware('role:admin');
 Route::put('/pengunjung/update/{id}', [PengunjungController::class, 'update'])->middleware('role:admin');
 
-Route::get('/user', [UserController::class, 'index'])->middleware('role:admin');
+Route::resource('/user', UserController::class)->middleware('role:admin');
 
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/process-register', [AuthController::class, 'processRegister']);

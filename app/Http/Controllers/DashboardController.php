@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buku;
 use App\Models\Pengunjung;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,9 +12,23 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $user = User::count();
+        $buku = Buku::count();
+        $pengunjung = Pengunjung::count();
+        $bukuModel = new Buku();
+        $totalBuku = $bukuModel->totalBukuPerBulan();
+
+        $pengunjungModel = new Pengunjung();
+        $totalPengunjungPerBulan = $pengunjungModel->totalPengunjungPerBulan();
+
         $data = [
             'title' => 'Dashboard - Sistem Perpustakaan',
-            'active' => 'dashboard'
+            'active' => 'dashboard',
+            'user' => $user,
+            'buku' => $buku,
+            'pengunjung' => $pengunjung,
+            'totalBuku' => $totalBuku,
+            'totalPengunjungPerBulan' => $totalPengunjungPerBulan,
         ];
         return view('dashboard', $data);
     }

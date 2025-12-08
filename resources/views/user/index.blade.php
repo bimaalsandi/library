@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            {{-- <a href="{{ url('buku/create') }}" class="btn btn-primary mb-1 me-auto">Tambah Buku</a> --}}
+            <a href="{{ route('user.create') }}" class="btn btn-primary mb-1 me-auto">Tambah User</a>
             <table class="table" id="userTable">
                 <thead>
                     <tr>
@@ -17,6 +17,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,15 @@
                             <td>{{ $ru->name }}</td>
                             <td>{{ $ru->email }}</td>
                             <td>{{ $ru->role }}</td>
+                            <td>
+                                <a href="{{ route('user.edit', $ru->id) }}" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('user.destroy', $ru->id) }}" method="post" class="d-inline"
+                                    onsubmit="return confirm('Apakah kamu yakin untuk hapus data ini?')">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -33,4 +33,14 @@ class Buku extends Model
             ->where('pengunjung.id_user', $id_user);
         return $query->get();
     }
+
+    public function totalBukuPerBulan()
+    {
+        $query = DB::table('buku')
+            ->selectRaw('COUNT(*) as total, YEAR(thn_masuk) as tahun, MONTHNAME(thn_masuk) as bulan, MONTH(thn_masuk) as bulan_number')
+            ->groupBy('tahun', 'bulan', 'bulan_number')
+            ->orderBy('tahun')
+            ->orderBy('bulan_number', 'asc');
+        return $query->get();
+    }
 }
