@@ -10,16 +10,33 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::count();
-        $buku = Buku::count();
-        $pengunjung = Pengunjung::count();
+
+        $dateRange = $request->input('daterange', '');
+        if (!empty($dateRange)) {
+            list($startDate, $endDate) = array_map('trim', explode(' - ', $dateRange));
+        } else {
+            $startDate = null;
+            $endDate = null;
+        }
+
+        $user = User::when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        })->count();
+        $buku = Buku::when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('thn_masuk', [$startDate, $endDate]);
+        })->count();
+        $pengunjung = Pengunjung::when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        })->count();
+
+
         $bukuModel = new Buku();
-        $totalBuku = $bukuModel->totalBukuPerBulan();
+        $totalBuku = $bukuModel->totalBukuPerBulan($startDate, $endDate);
 
         $pengunjungModel = new Pengunjung();
-        $totalPengunjungPerBulan = $pengunjungModel->totalPengunjungPerBulan();
+        $totalPengunjungPerBulan = $pengunjungModel->totalPengunjungPerBulan($startDate, $endDate);
 
         $data = [
             'title' => 'Dashboard - Sistem Perpustakaan',

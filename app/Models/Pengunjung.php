@@ -36,10 +36,13 @@ class Pengunjung extends Model
         return $query->first();
     }
 
-    public function totalPengunjungPerBulan()
+    public function totalPengunjungPerBulan($startDate, $endDate)
     {
         $query = DB::table('pengunjung')
             ->selectRaw('COUNT(*) as total, YEAR(created_at) as tahun, MONTHNAME(created_at) as bulan, MONTH(created_at) as bulan_number')
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('created_at', [$startDate, $endDate]);
+            })
             ->groupBy('tahun', 'bulan', 'bulan_number')
             ->orderBy('tahun')
             ->orderBy('bulan_number', 'asc');
