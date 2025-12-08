@@ -9,7 +9,7 @@
         </form>
         <div class="row g-3 mb-4">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-danger text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -39,16 +39,30 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
-                        <div class="me-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center"
+                        <div class="me-3 bg-warning text-white rounded-circle d-flex align-items-center justify-content-center"
                             style="width: 50px; height: 50px;">
                             <i class="bi bi-person-check fs-4"></i>
                         </div>
                         <div>
                             <h6 class="text-muted mb-1">Jumlah Pengunjung</h6>
                             <h3 class="fw-bold mb-0">{{ $pengunjung }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="me-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 50px; height: 50px;">
+                            <i class="bi bi-coin fs-4"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-muted mb-1">Denda</h6>
+                            <h3 class="fw-bold mb-0">{{ number_format($totalDenda, 0, '.', '.') }}</h3>
                         </div>
                     </div>
                 </div>

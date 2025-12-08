@@ -37,6 +37,7 @@ class DashboardController extends Controller
 
         $pengunjungModel = new Pengunjung();
         $totalPengunjungPerBulan = $pengunjungModel->totalPengunjungPerBulan($startDate, $endDate);
+        $totalDenda = Pengunjung::selectRaw('sum(denda) as total_denda')->value('total_denda');
 
         $data = [
             'title' => 'Dashboard - Sistem Perpustakaan',
@@ -46,6 +47,7 @@ class DashboardController extends Controller
             'pengunjung' => $pengunjung,
             'totalBuku' => $totalBuku,
             'totalPengunjungPerBulan' => $totalPengunjungPerBulan,
+            'totalDenda' => $totalDenda,
         ];
         return view('dashboard', $data);
     }
