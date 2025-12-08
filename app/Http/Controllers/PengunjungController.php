@@ -22,7 +22,11 @@ class PengunjungController extends Controller
                 } else {
                     $hari = 0;
                 }
-                $rl->denda = $hari * 5000;
+                if ($rl->denda) {
+                    $rl->denda;
+                } else {
+                    $rl->denda = $hari * 5000;
+                }
             }
         }
         $data = [
