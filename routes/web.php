@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/profile', [AuthController::class, 'profile'])->middleware('role:admin,member')->name('profile');
+Route::put('/profile', [AuthController::class, 'updateProfile'])->middleware('role:admin,member')->name('profile.update');
+Route::post('/change-password', [AuthController::class, 'changePassword'])->middleware('role:admin,member')->name('change.password');
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('role:admin');
 Route::get('/buku', [BukuController::class, 'index'])->middleware('role:admin');

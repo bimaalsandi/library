@@ -9,7 +9,7 @@
         </form>
         <div class="row g-3 mb-4">
 
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-danger text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-warning text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -53,7 +53,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+
+            <div class="col-12 col-md-6 col-lg-3">
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-body d-flex align-items-center">
                         <div class="me-3 bg-success text-white rounded-circle d-flex align-items-center justify-content-center"
@@ -70,9 +71,10 @@
 
         </div>
 
-        <div class="p-5 bg-white shadow-sm rounded mb-3">
+
+        <div class="p-5 bg-dark text-light shadow-sm rounded mb-3">
             <h3>Selamat Datang di Sistem Perpustakaan</h3>
-            <p class="text-muted">Gunakan menu di atas untuk mengelola data User, Buku, dan Pengunjung.</p>
+            <p class="text-light">Gunakan menu di atas untuk mengelola data User, Buku, dan Pengunjung.</p>
         </div>
 
         <div class="row mb-3">

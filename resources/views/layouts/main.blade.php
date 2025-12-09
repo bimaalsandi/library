@@ -62,12 +62,23 @@
                 </ul>
 
                 <div class="d-flex align-items-center">
-                    <span class="text-white me-3">{{ Auth::user()->name }}</span>
 
-                    <form action="{{ url('logout') }}" method="POST">
-                        @csrf
-                        <button class="btn btn-light btn-sm">Logout</button>
-                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-transparent text-light dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                            <li>
+                                <form action="{{ url('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

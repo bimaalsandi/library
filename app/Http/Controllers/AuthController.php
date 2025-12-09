@@ -73,4 +73,45 @@ class AuthController extends Controller
 
         return redirect('/')->with('success', 'Akun sudah terdaftar silahkan login');
     }
+
+    public function profile()
+    {
+        $data = [
+            'title' => 'Profile - Sistem Perpustakaan',
+            'active' => 'profile',
+            'user' => Auth::user()
+        ];
+        return view('auth.profile', $data);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users,email, ' . Auth::id(),
+        ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Profile berhasil diupdate');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+            'new_password_confirmation' => 'required|min:8',
+        ]);
+        $user = Auth::user();
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->with('error', 'Password lama tidak sesuai');
+        }
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect()->route('profile')->with('success', 'Password berhasil diubah');
+    }
 }
