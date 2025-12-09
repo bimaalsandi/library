@@ -1,4 +1,8 @@
-@extends('layouts.main')
+@if (Auth::user()->role == 'admin')
+    @extends('layouts.main')
+@else
+    @extends('layouts.member')
+@endif
 @section('content')
     <div class="container my-4">
         <h4>Profile</h4>

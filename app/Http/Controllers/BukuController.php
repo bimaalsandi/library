@@ -96,6 +96,7 @@ class BukuController extends Controller
         $bukuModel = new Buku();
         $listBuku = $bukuModel->listBukuYangDipinjam(Auth::id());
         if ($listBuku) {
+            $totalDenda = 0;
             foreach ($listBuku as $rl) {
                 $today = date('Y-m-d');
                 $tgl_kembali = date('Y-m-d', strtotime($rl->tgl_kembali));
@@ -105,13 +106,22 @@ class BukuController extends Controller
                 } else {
                     $hari = 0;
                 }
-                $rl->denda = $hari * 5000;
+
+                if ($rl->denda) {
+                    $rl->denda = $rl->denda;
+                } else {
+                    $rl->denda = $hari * 5000;
+                }
+                $totalDenda += $rl->denda;
+                $rl->denda = number_format($rl->denda, 0, ',', '.');
             }
+            $totalDenda = number_format($totalDenda, 0, ',', '.');
         }
         $data = [
             'title' => 'List Pinjaman Buku - Sistem Perpustakaan',
             'active' => 'pinjaman',
-            'listBuku' => $listBuku
+            'listBuku' => $listBuku,
+            'totalDenda' => $totalDenda
         ];
         return view('member.buku.list', $data);
     }

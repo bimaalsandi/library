@@ -24,8 +24,8 @@
 
     <!-- ========================= NAVBAR ========================= -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="#">Sistem perpustakaan</a>
+        <div class="container">
+            <a class="navbar-brand" href="#">Sistem perpustakaan</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
@@ -44,18 +44,25 @@
                 <ul class="navbar-nav">
 
 
-                    <li class="nav-item me-3 d-flex align-items-center">
-                        <span class="text-white">
-                            {{ Auth::user()->name }}
-                        </span>
-                    </li>
+                    <div class="d-flex align-items-center">
 
-                    <li class="nav-item">
-                        <form action="{{ url('logout') }}" method="POST">
-                            @csrf
-                            <button class="btn btn-light btn-sm">Logout</button>
-                        </form>
-                    </li>
+                        <div class="dropdown">
+                            <button class="btn btn-transparent text-light dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('profile') }}">Profile</a></li>
+                                <li>
+                                    <form action="{{ url('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="dropdown-item">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
 
                 </ul>
             </div>

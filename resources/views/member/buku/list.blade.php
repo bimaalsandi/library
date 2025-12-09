@@ -45,6 +45,12 @@
                         @endforeach
 
                     </tbody>
+                    <tfoot class="table-primary">
+                        <tr>
+                            <th colspan="7" class="text-end">Total Denda</th>
+                            <th>{{ $totalDenda }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
