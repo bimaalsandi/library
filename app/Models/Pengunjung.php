@@ -48,4 +48,47 @@ class Pengunjung extends Model
             ->orderBy('bulan_number', 'asc');
         return $query->get();
     }
+
+    public function reportPerBulan()
+    {
+        $query = Pengunjung::where('status', 'Done')
+            ->selectRaw('concat(monthname(updated_at), "-", year(updated_at)) as tahun_bulan, sum(denda) as total_denda, year(updated_at) as tahun, month(updated_at) as bulan')
+            ->groupBy(['tahun_bulan', 'tahun', 'bulan'])
+            ->orderBy('tahun', 'asc')
+            ->orderBy('bulan', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function reportPerWeek()
+    {
+        $query = Pengunjung::where('status', 'Done')
+            ->selectRaw('
+            YEAR(updated_at) as tahun,
+            WEEK(updated_at, 1) as minggu,
+            CONCAT("Week ", WEEK(updated_at, 1), " - ", YEAR(updated_at)) as tahun_minggu,
+            SUM(denda) as total_denda_minggu
+        ')
+            ->groupBy('tahun', 'minggu', 'tahun_minggu')
+            ->orderBy('tahun', 'asc')
+            ->orderBy('minggu', 'asc')
+            ->get();
+
+        return $query;
+    }
+
+    public function reportPerTahun()
+    {
+        $query = Pengunjung::where('status', 'Done')
+            ->selectRaw('
+            YEAR(updated_at) as tahun,
+            SUM(denda) as total_denda_tahun
+        ')
+            ->groupBy('tahun')
+            ->orderBy('tahun', 'asc')
+            ->get();
+
+        return $query;
+    }
 }

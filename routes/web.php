@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PengunjungController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::get('/pengunjung/edit/{id}', [PengunjungController::class, 'edit'])->midd
 Route::put('/pengunjung/update/{id}', [PengunjungController::class, 'update'])->middleware('role:admin');
 
 Route::resource('/user', UserController::class)->middleware('role:admin');
+
+Route::get('/report', [ReportController::class, 'index'])->middleware('role:admin');
 
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/process-register', [AuthController::class, 'processRegister']);

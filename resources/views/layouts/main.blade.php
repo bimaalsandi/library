@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <script src="https://code.highcharts.com/highcharts.js"></script>
 
+
     {{-- Datepicker --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
@@ -58,6 +59,9 @@
                     <li class="nav-item">
                         <a class="nav-link {{ $active == 'pengunjung' ? 'active' : '' }}"
                             href="/pengunjung">Pengunjung</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active == 'report' ? 'active' : '' }}" href="/report">Report</a>
                     </li>
                 </ul>
 
