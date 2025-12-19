@@ -31,7 +31,9 @@ Route::put('/pengunjung/update/{id}', [PengunjungController::class, 'update'])->
 
 Route::resource('/user', UserController::class)->middleware('role:admin');
 
-Route::get('/report', [ReportController::class, 'index'])->middleware('role:admin');
+Route::get('/report-mingguan', [ReportController::class, 'index'])->middleware('role:admin');
+Route::get('/report-bulanan', [ReportController::class, 'indexBulanan'])->middleware('role:admin');
+Route::get('/report-tahunan', [ReportController::class, 'indexTahunan'])->middleware('role:admin');
 
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/process-register', [AuthController::class, 'processRegister']);

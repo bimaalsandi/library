@@ -63,8 +63,20 @@
                         <a class="nav-link {{ $active == 'pengunjung' ? 'active' : '' }}"
                             href="/pengunjung">Pengunjung</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link {{ $active == 'report' ? 'active' : '' }}" href="/report">Report</a>
+                    </li> --}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle  {{ $active == 'report' ? 'active' : '' }}" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Report
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('report-mingguan') }}">Mingguan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('report-bulanan') }}">Bulanan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('report-tahunan') }}">Tahunan</a></li>
+
+                        </ul>
                     </li>
                 </ul>
 
