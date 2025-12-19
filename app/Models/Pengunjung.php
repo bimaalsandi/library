@@ -49,10 +49,13 @@ class Pengunjung extends Model
         return $query->get();
     }
 
-    public function reportPerBulan()
+    public function reportPerBulan($startDate, $endDate)
     {
         $query = Pengunjung::where('status', 'Done')
             ->selectRaw('concat(monthname(updated_at), "-", year(updated_at)) as tahun_bulan, sum(denda) as total_denda, year(updated_at) as tahun, month(updated_at) as bulan')
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('updated_at', [$startDate, $endDate]);
+            })
             ->groupBy(['tahun_bulan', 'tahun', 'bulan'])
             ->orderBy('tahun', 'asc')
             ->orderBy('bulan', 'asc')
@@ -61,7 +64,7 @@ class Pengunjung extends Model
         return $query;
     }
 
-    public function reportPerWeek()
+    public function reportPerWeek($startDate, $endDate)
     {
         $query = Pengunjung::where('status', 'Done')
             ->selectRaw('
@@ -70,6 +73,9 @@ class Pengunjung extends Model
             CONCAT("Week ", WEEK(updated_at, 1), " - ", YEAR(updated_at)) as tahun_minggu,
             SUM(denda) as total_denda_minggu
         ')
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('updated_at', [$startDate, $endDate]);
+            })
             ->groupBy('tahun', 'minggu', 'tahun_minggu')
             ->orderBy('tahun', 'asc')
             ->orderBy('minggu', 'asc')
@@ -78,13 +84,16 @@ class Pengunjung extends Model
         return $query;
     }
 
-    public function reportPerTahun()
+    public function reportPerTahun($startDate, $endDate)
     {
         $query = Pengunjung::where('status', 'Done')
             ->selectRaw('
             YEAR(updated_at) as tahun,
             SUM(denda) as total_denda_tahun
         ')
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                return $query->whereBetween('updated_at', [$startDate, $endDate]);
+            })
             ->groupBy('tahun')
             ->orderBy('tahun', 'asc')
             ->get();

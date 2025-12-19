@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $dateRange = $request->input('daterange', '');
+        if (!empty($dateRange)) {
+            list($startDate, $endDate) = array_map('trim', explode(' - ', $dateRange));
+        } else {
+            $startDate = null;
+            $endDate = null;
+        }
 
         $pengunjungModel = new Pengunjung();
-        $reportBulan = $pengunjungModel->reportPerBulan();
-        $reportMinggu = $pengunjungModel->reportPerWeek();
-        $reportTahun = $pengunjungModel->reportPerTahun();
+        $reportBulan = $pengunjungModel->reportPerBulan($startDate, $endDate);
+        $reportMinggu = $pengunjungModel->reportPerWeek($startDate, $endDate);
+        $reportTahun = $pengunjungModel->reportPerTahun($startDate, $endDate);
 
         $data = [
             'title' => 'Report - Sistem Perpustakaan',
@@ -21,6 +28,7 @@ class ReportController extends Controller
             'reportMinggu' => $reportMinggu,
             'reportBulan' => $reportBulan,
             'reportTahun' => $reportTahun,
+            'date_range' => $dateRange
         ];
         return view('pengunjung.report', $data);
     }
